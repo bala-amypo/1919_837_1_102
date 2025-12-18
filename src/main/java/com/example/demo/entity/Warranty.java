@@ -67,10 +67,11 @@ public class Warranty{
         this.id=id;
         this.user = user;
         this.product = product;
-        this.modelNumber=modelNumber;
-        this.category=category;
+        this.purchaseDate = purchaseDate;
+        this.expiryDate = expiryDate;
+        this.serialNumber=serialNumber;
     }
-    public Product(){
+    public Warranty(){
         
     }
 }
