@@ -1,13 +1,14 @@
 package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.time.LocalDateTime;
 @Entity
 public class AlertSchedule{
     @Id
     private Long id;
     private String warranty;
-    private Long daysBeforeExpiry;
-    private Boolean enabled;
+    private LocalDateTime sentAt;
+    private String message;
 
     public Long getId() {
         return id;
@@ -25,16 +26,16 @@ public class AlertSchedule{
         this.warranty = warranty;
     }
 
-    public Long getdaysBeforeExpiry() {
-        return daysBeforeExpiry;
+    public LocalDateTime sentAt() {
+        return sentAt;
     }
 
-    public Long setdaysBeforeExpiry(Long daysBeforeExpiry) {
-        this.daysBeforeExpiry = daysBeforeExpiry;
+    public Long setsentAt(LocalDateTime setAt) {
+        this.sentAt = sentAt;
     }
 
-    public Boolean enabled() {
-        return enabled;
+    public String message() {
+        return message;
     }
 
     public void setenabled(Boolean enabled) {
