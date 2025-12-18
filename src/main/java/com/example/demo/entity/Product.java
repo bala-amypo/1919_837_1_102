@@ -27,7 +27,7 @@ public class Product{
     }
 
     public String getbrand() {
-        return email;
+        return brand;
     }
 
     public void setbrand(String brand) {

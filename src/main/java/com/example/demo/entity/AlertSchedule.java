@@ -17,20 +17,20 @@ public class AlertSchedule{
         this.id = id;
     }
 
-    public String get() {
-        return name;
+    public String getwarranty() {
+        return warranty;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setwarranty(String warranty) {
+        this.warranty = warranty;
     }
 
-    public String getbrand() {
-        return email;
+    public Long getdaysBeforeExpiry() {
+        return daysBeforeExpiry;
     }
 
-    public void setbrand(String brand) {
-        this.brand = brand;
+    public Long setdaysBeforeExpiry(Long daysBeforeExpiry) {
+        this.brand = daysBeforeExpiry;
     }
 
     public String getmodelNumber() {
