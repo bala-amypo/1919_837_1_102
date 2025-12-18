@@ -30,27 +30,20 @@ public class AlertSchedule{
     }
 
     public Long setdaysBeforeExpiry(Long daysBeforeExpiry) {
-        this.brand = daysBeforeExpiry;
+        this.daysBeforeExpiry = daysBeforeExpiry;
     }
 
-    public String getmodelNumber() {
-        return modelNumber;
+    public Boolean enabled() {
+        return enabled;
     }
 
-    public void setmodelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
+    public void setenabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    public String category() {
-        return category;
-    }
-
-    public void setcategory(String category) {
-        this.category = category;
-    }
-    public Product(Long id, String name, String brand, String modelNumber, String category){
+    public Product(Long id, String warranty, Long daysBeforeExpiry, Boolean enabled){
         this.id=id;
-        this.name=name;
+        this.warranty=warranty;
         this.brand=brand;
         this.modelNumber=modelNumber;
         this.category=category;
