@@ -23,14 +23,6 @@ public class Warranty{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String user() {
         return user;
     }
@@ -40,7 +32,7 @@ public class Warranty{
     }
 
     public String product() {
-        return modelNumber;
+        return product;
     }
 
     public void setproduct(String product) {
@@ -71,10 +63,10 @@ public class Warranty{
         this.serialNumber = serialNumber;
     }
 
-    public Product(Long id, String user, String  , String modelNumber, String category){
+    public Product(Long id, String user, String product, LocalDate purchaseDate, LocalDate expiryDate, String serialNumber){
         this.id=id;
-        this.name=name;
-        this.brand=brand;
+        this.user = user;
+        this.product = product;
         this.modelNumber=modelNumber;
         this.category=category;
     }
