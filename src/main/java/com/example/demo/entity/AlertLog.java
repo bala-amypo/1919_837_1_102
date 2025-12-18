@@ -3,7 +3,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 @Entity
-public class AlertSchedule{
+public class AlertLog{
     @Id
     private Long id;
     private String warranty;
@@ -38,17 +38,17 @@ public class AlertSchedule{
         return message;
     }
 
-    public void setenabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setmessage(String message) {
+        this.message = message;
     }
 
-    public Product(Long id, String warranty, Long daysBeforeExpiry, Boolean enabled){
+    public Product(Long id, String warranty, LocalDateTime sentAt, String message){
         this.id=id;
         this.warranty=warranty;
-        this.daysBeforeExpiry=daysBeforeExpiry;
-        this.enabled=enabled;
+        this.sentAt=sentAt;
+        this.message=message;
     }
-    public AlertSchedule(){
+    public AlertLog(){
         
     }
 }
