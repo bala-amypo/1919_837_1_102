@@ -59,12 +59,19 @@ public class Warranty{
         return expiryDate;
     }
 
-    public void setexpiryDate(LocalDate purchaseDate) {
-        this.purchaseDate = purchaseDate;
+    public void setexpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
     }
 
+    public String getserialNumber() {
+        return serialNumber;
+    }
 
-    public Product(Long id, String name, String brand, String modelNumber, String category){
+    public void setserialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Product(Long id, String user, String  , String modelNumber, String category){
         this.id=id;
         this.name=name;
         this.brand=brand;
