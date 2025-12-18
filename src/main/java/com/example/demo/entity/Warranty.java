@@ -2,14 +2,18 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.time.LocalDate;
+import jakarta.persistence.Column;
+
 @Entity
 public class Warranty{
     @Id
     private Long id;
     private String user;
     private String product;
-    private LocalDate modelNumber;
-    private Locsl category;
+    private LocalDate purchaseDate;
+    private LocalDate expiryDate;
+    @Column(unique=true)
+    private String serialNumber;
 
     public Long getId() {
         return id;
@@ -27,15 +31,15 @@ public class Warranty{
         this.name = name;
     }
 
-    public String getbrand() {
-        return email;
+    public String user() {
+        return user;
     }
 
-    public void setbrand(String brand) {
-        this.brand = brand;
+    public void setuser(String user) {
+        this.user = user;
     }
 
-    public String getmodelNumber() {
+    public String product() {
         return modelNumber;
     }
 
