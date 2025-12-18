@@ -42,7 +42,7 @@ public class AlertLog{
         this.message = message;
     }
 
-    public Product(Long id, String warranty, LocalDateTime sentAt, String message){
+    public AlertLog(Long id, String warranty, LocalDateTime sentAt, String message){
         this.id=id;
         this.warranty=warranty;
         this.sentAt=sentAt;

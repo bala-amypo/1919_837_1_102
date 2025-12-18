@@ -41,7 +41,7 @@ public class AlertSchedule{
         this.enabled = enabled;
     }
 
-    public Product(Long id, String warranty, Long daysBeforeExpiry, Boolean enabled){
+    public AlertSchedule(Long id, String warranty, Long daysBeforeExpiry, Boolean enabled){
         this.id=id;
         this.warranty=warranty;
         this.daysBeforeExpiry=daysBeforeExpiry;

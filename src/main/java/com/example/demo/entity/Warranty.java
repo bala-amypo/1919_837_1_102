@@ -63,7 +63,7 @@ public class Warranty{
         this.serialNumber = serialNumber;
     }
 
-    public Product(Long id, String user, String product, LocalDate purchaseDate, LocalDate expiryDate, String serialNumber){
+    public Warranty(Long id, String user, String product, LocalDate purchaseDate, LocalDate expiryDate, String serialNumber){
         this.id=id;
         this.user = user;
         this.product = product;
