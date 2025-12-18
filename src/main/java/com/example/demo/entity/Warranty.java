@@ -2,11 +2,11 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
-public class Product{
+public class Warranty{
     @Id
     private Long id;
-    private String name;
-    private String brand;
+    private String user;
+    private String product;
     private String modelNumber;
     private String category;
 
