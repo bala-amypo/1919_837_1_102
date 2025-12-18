@@ -2,7 +2,7 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
-public class User{
+public class Product{
     @Id
     private Long id;
     private String name;
@@ -49,14 +49,14 @@ public class User{
     public void setcategory(String category) {
         this.category = category;
     }
-    public User(Long id, String name, String brand, String modelNumber, String category){
+    public Product(Long id, String name, String brand, String modelNumber, String category){
         this.id=id;
         this.name=name;
         this.brand=brand;
         this.modelNumber=modelNumber;
         this.category=category;
     }
-    public User(){
+    public Product(){
         
     }
 }
