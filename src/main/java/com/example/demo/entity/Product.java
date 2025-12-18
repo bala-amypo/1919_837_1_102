@@ -35,26 +35,26 @@ public class User{
     }
 
     public String getmodelNumber() {
-        return password;
+        return modelNumber;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setmodelNumber(String modelNumber) {
+        this.modelNumber = modelNumber;
     }
 
-    public String getRole() {
-        return role;
+    public String category() {
+        return category;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setcategory(String category) {
+        this.category = category;
     }
-    public User(Long id, String name, String email, String password, String role){
+    public User(Long id, String name, String brand, String modelNumber, String category){
         this.id=id;
         this.name=name;
-        this.email=email;
-        this.password=password;
-        this.role=role;
+        this.brand=brand;
+        this.modelNumber=modelNumber;
+        this.category=category;
     }
     public User(){
         
