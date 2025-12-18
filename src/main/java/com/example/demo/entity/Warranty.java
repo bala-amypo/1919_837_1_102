@@ -1,14 +1,15 @@
 package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.time.LocalDate;
 @Entity
 public class Warranty{
     @Id
     private Long id;
     private String user;
     private String product;
-    private String modelNumber;
-    private String category;
+    private LocalDate modelNumber;
+    private Locsl category;
 
     public Long getId() {
         return id;
