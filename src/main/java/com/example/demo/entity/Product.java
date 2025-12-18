@@ -26,12 +26,12 @@ public class User{
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getbrand() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setbrand(String brand) {
+        this.brand = brand;
     }
 
     public String getPassword() {
