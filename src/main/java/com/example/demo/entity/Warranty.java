@@ -43,17 +43,27 @@ public class Warranty{
         return modelNumber;
     }
 
-    public void setmodelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
+    public void setproduct(String product) {
+        this.product = product;
     }
 
-    public String category() {
-        return category;
+    public LocalDate purchaseDate() {
+        return purchaseDate;
     }
 
-    public void setcategory(String category) {
-        this.category = category;
+    public void setpurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
+
+    public LocalDate expiryDate() {
+        return expiryDate;
+    }
+
+    public void setexpiryDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
+
+
     public Product(Long id, String name, String brand, String modelNumber, String category){
         this.id=id;
         this.name=name;
