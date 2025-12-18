@@ -34,7 +34,7 @@ public class User{
         this.brand = brand;
     }
 
-    public String getPassword() {
+    public String getmodelNumber() {
         return password;
     }
 
