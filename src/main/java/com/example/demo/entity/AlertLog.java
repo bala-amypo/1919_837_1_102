@@ -30,7 +30,7 @@ public class AlertLog{
         return sentAt;
     }
 
-    public Long setsentAt(LocalDateTime setAt) {
+    public void setsentAt(LocalDateTime sentAt) {
         this.sentAt = sentAt;
     }
 
