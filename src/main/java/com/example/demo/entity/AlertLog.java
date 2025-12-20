@@ -41,14 +41,14 @@ public class AlertLog{
     public void setMessage(String message) {
         this.message = message;
     }
-}
 
-public AlertLog(Long id, String warranty, LocalDateTime sentAt, String message){
-    this.id=id;
-    this.warranty=warranty;
-    this.sentAt=sentAt;
-    this.message=message;
-}
-public AlertLog(){
+    public AlertLog(Long id, String warranty, LocalDateTime sentAt, String message){
+        this.id=id;
+        this.warranty=warranty;
+        this.sentAt=sentAt;
+        this.message=message;
+    }
+    public AlertLog(){
         
+    }
 }

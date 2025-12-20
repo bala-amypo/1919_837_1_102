@@ -21,7 +21,7 @@ public class AlertSchedule{
         return warranty;
     }
 
-    public void setwarranty(String warranty) {
+    public void setWarranty(String warranty) {
         this.warranty = warranty;
     }
 
@@ -33,7 +33,7 @@ public class AlertSchedule{
         this.daysBeforeExpiry = daysBeforeExpiry;
     }
 
-    public Boolean GetEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
