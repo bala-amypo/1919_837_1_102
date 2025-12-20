@@ -17,7 +17,7 @@ public class AlertSchedule{
         this.id = id;
     }
 
-    public String getwarranty() {
+    public String getWarranty() {
         return warranty;
     }
 
@@ -25,11 +25,11 @@ public class AlertSchedule{
         this.warranty = warranty;
     }
 
-    public Long getdaysBeforeExpiry() {
+    public Long getDaysBeforeExpiry() {
         return daysBeforeExpiry;
     }
 
-    public void setdaysBeforeExpiry(Long daysBeforeExpiry) {
+    public void setDaysBeforeExpiry(Long daysBeforeExpiry) {
         this.daysBeforeExpiry = daysBeforeExpiry;
     }
 

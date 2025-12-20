@@ -18,27 +18,27 @@ public class AlertLog{
         this.id = id;
     }
 
-    public String getwarranty() {
+    public String getWarranty() {
         return warranty;
     }
 
-    public void setwarranty(String warranty) {
+    public void setWarranty(String warranty) {
         this.warranty = warranty;
     }
 
-    public LocalDateTime sentAt() {
+    public LocalDateTime getSentAt() {
         return sentAt;
     }
 
-    public void setsentAt(LocalDateTime sentAt) {
+    public void setSentAt(LocalDateTime sentAt) {
         this.sentAt = sentAt;
     }
 
-    public String message() {
+    public String getMessage() {
         return message;
     }
 
-    public void setmessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
