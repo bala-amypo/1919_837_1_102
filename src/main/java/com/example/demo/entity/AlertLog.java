@@ -2,8 +2,10 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
-@Table(name=)
+import jakarta.persistence.Table;
+
 @Entity
+@Table(name="visak")
 public class AlertLog{
     @Id
     private Long id;
