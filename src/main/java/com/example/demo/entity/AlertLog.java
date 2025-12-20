@@ -1,34 +1,33 @@
-package com.example.demo.controller;
+package com.example.demo.entity;
 
-import com.example.demo.entity.AlertSchedule;
-import com.example.demo.service.AlertScheduleService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.*;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
-@RestController
-@RequestMapping("/schedules")
-@Tag(name = "AlertSchedule")
-public class AlertScheduleController {
+@Entity
+@Table(name = "alert_logs")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class AlertLog {
 
-    private final AlertScheduleService alertScheduleService;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public AlertScheduleController(AlertScheduleService alertScheduleService) {
-        this.alertScheduleService = alertScheduleService;
-    }
+    @ManyToOne
+    @JoinColumn(name = "warranty_id", nullable = false)
+    private Warranty warranty;
 
-    @PostMapping("/{warrantyId}")
-    @Operation(summary = "Create an alert schedule for a warranty")
-    public AlertSchedule createSchedule(@PathVariable Long warrantyId,
-                                        @RequestBody AlertSchedule schedule) {
-        return alertScheduleService.createSchedule(warrantyId, schedule);
-    }
+    private LocalDateTime sentAt;
 
-    @GetMapping("/{warrantyId}")
-    @Operation(summary = "Get all alert schedules for a warranty")
-    public List<AlertSchedule> getSchedules(@PathVariable Long warrantyId) {
-        return alertScheduleService.getSchedules(warrantyId);
+    private String message;
+
+    @PrePersist
+    public void prePersist() {
+        this.sentAt = LocalDateTime.now();
     }
 }
