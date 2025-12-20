@@ -42,7 +42,7 @@ public class Product{
         this.modelNumber = modelNumber;
     }
 
-    public String GetCategory() {
+    public String getCategory() {
         return category;
     }
 

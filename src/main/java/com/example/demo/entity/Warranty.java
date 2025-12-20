@@ -23,43 +23,43 @@ public class Warranty{
         this.id = id;
     }
 
-    public String user() {
+    public String getUser() {
         return user;
     }
 
-    public void setuser(String user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public String product() {
+    public String getProduct() {
         return product;
     }
 
-    public void setproduct(String product) {
+    public void setProduct(String product) {
         this.product = product;
     }
 
-    public LocalDate purchaseDate() {
+    public LocalDate getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setpurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(LocalDate purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 
-    public LocalDate expiryDate() {
+    public LocalDate getExpiryDate() {
         return expiryDate;
     }
 
-    public void setexpiryDate(LocalDate expiryDate) {
+    public void setExpiryDate(LocalDate expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public String getserialNumber() {
+    public String getSerialNumber() {
         return serialNumber;
     }
 
-    public void setserialNumber(String serialNumber) {
+    public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
     }
 
