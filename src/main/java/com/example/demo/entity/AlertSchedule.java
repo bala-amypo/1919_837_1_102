@@ -29,7 +29,7 @@ public class AlertSchedule{
         return daysBeforeExpiry;
     }
 
-    public Long setdaysBeforeExpiry(Long daysBeforeExpiry) {
+    public void setdaysBeforeExpiry(Long daysBeforeExpiry) {
         this.daysBeforeExpiry = daysBeforeExpiry;
     }
 
