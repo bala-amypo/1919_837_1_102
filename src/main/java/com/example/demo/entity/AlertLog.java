@@ -2,6 +2,7 @@ package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
+@Table(name=)
 @Entity
 public class AlertLog{
     @Id
