@@ -1,4 +1,3 @@
--- Active: 1766237863677@@127.0.0.1@3306@skct
 package com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
