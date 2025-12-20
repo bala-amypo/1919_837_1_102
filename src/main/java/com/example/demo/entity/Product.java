@@ -26,27 +26,27 @@ public class Product{
         this.name = name;
     }
 
-    public String getbrand() {
+    public String getBrand() {
         return brand;
     }
 
-    public void setbrand(String brand) {
+    public void setBrand(String brand) {
         this.brand = brand;
     }
 
-    public String getmodelNumber() {
+    public String getModelNumber() {
         return modelNumber;
     }
 
-    public void setmodelNumber(String modelNumber) {
+    public void setModelNumber(String modelNumber) {
         this.modelNumber = modelNumber;
     }
 
-    public String category() {
+    public String GetCategory() {
         return category;
     }
 
-    public void setcategory(String category) {
+    public void setCategory(String category) {
         this.category = category;
     }
     public Product(Long id, String name, String brand, String modelNumber, String category){

@@ -33,11 +33,11 @@ public class AlertSchedule{
         this.daysBeforeExpiry = daysBeforeExpiry;
     }
 
-    public Boolean enabled() {
+    public Boolean GetEnabled() {
         return enabled;
     }
 
-    public void setenabled(Boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
