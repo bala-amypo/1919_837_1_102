@@ -31,5 +31,5 @@ public class Warranty {
     private LocalDate expiryDate;
 
     @Column(unique = true, nullable = false)
-    private String serialNumber;
+    private String SerialNumber;
 }
