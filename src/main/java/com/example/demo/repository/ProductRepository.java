@@ -1,10 +1,7 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.Warranty;
+import com.example.demo.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface WarrantyRepository extends JpaRepository<Warranty, Long> {
-    List<Warranty> findByUserId(Long userId);
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
