@@ -13,23 +13,21 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class Warranty {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id")
     private Product product;
 
-    private LocalDate purchaseDate;
+    @Column(nullable = false)
+    private LocalDate startDate;
 
-    private LocalDate expiryDate;
-
-    @Column(unique = true, nullable = false)
-    private String SerialNumber;
+    @Column(nullable = false)
+    private LocalDate endDate;
 }

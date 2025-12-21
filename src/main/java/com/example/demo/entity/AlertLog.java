@@ -13,21 +13,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class AlertLog {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "warranty_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 
     private LocalDateTime sentAt;
 
+    @Column(nullable = false)
     private String message;
 
     @PrePersist
     public void prePersist() {
-        this.sentAt = LocalDateTime.now();
+        if (this.sentAt == null) {
+            this.sentAt = LocalDateTime.now();
+        }
     }
 }
