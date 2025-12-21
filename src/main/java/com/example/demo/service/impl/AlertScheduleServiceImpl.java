@@ -26,11 +26,12 @@ public class AlertScheduleServiceImpl implements AlertScheduleService {
     public AlertSchedule createSchedule(Long warrantyId, AlertSchedule schedule) {
         Warranty warranty = warrantyRepository.findById(warrantyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
-
         if (schedule.getDaysBeforeExpiry() == null || schedule.getDaysBeforeExpiry() < 0) {
             throw new IllegalArgumentException("daysBeforeExpiry must be >= 0");
         }
-
+        if (schedule.getEnabled() == null) {
+            schedule.setEnabled(true);
+        }
         schedule.setWarranty(warranty);
         return alertScheduleRepository.save(schedule);
     }

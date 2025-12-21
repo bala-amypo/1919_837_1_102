@@ -10,7 +10,6 @@ import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.WarrantyService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -35,13 +34,11 @@ public class WarrantyServiceImpl implements WarrantyService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
-        if (warranty.getExpiryDate() == null || warranty.getPurchaseDate() == null ||
-            !warranty.getExpiryDate().isAfter(warranty.getPurchaseDate())) {
-            throw new IllegalArgumentException("Expiry date must be after purchase date");
+        if (warranty.getStartDate() == null || warranty.getEndDate() == null) {
+            throw new IllegalArgumentException("startDate and endDate are required");
         }
-
-        if (warrantyRepository.existsBySerialNumber(warranty.getSerialNumber())) {
-            throw new IllegalArgumentException("Serial number must be unique");
+        if (warranty.getEndDate().isBefore(warranty.getStartDate())) {
+            throw new IllegalArgumentException("endDate must be after startDate");
         }
 
         warranty.setUser(user);
@@ -57,6 +54,9 @@ public class WarrantyServiceImpl implements WarrantyService {
 
     @Override
     public List<Warranty> getUserWarranties(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new ResourceNotFoundException("User not found");
+        }
         return warrantyRepository.findByUserId(userId);
     }
 }

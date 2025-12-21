@@ -27,6 +27,10 @@ public class AlertLogServiceImpl implements AlertLogService {
         Warranty warranty = warrantyRepository.findById(warrantyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
 
+        if (message == null || message.isBlank()) {
+            throw new IllegalArgumentException("message required");
+        }
+
         AlertLog log = AlertLog.builder()
                 .warranty(warranty)
                 .message(message)
