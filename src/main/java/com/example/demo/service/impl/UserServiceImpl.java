@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.User;
-import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
@@ -16,25 +15,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(User user) {
-        if (user.getEmail() == null || user.getEmail().isBlank()) {
-            throw new IllegalArgumentException("email required");
-        }
-        if (user.getPassword() == null || user.getPassword().isBlank()) {
-            throw new IllegalArgumentException("password required");
-        }
+    public User registerUser(User user) {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("email already exists");
-        }
-        if (user.getRole() == null || user.getRole().isBlank()) {
-            user.setRole("USER");
+            throw new RuntimeException("Email already exists");
         }
         return userRepository.save(user);
     }
 
     @Override
-    public User findByEmail(String email) {
+    public User loginUser(String email, String password) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+                .filter(u -> u.getPassword().equals(password))
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 }
