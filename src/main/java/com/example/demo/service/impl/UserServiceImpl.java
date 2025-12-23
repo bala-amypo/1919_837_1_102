@@ -16,9 +16,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerUser(User user) {
+        if (user.getName() == null || user.getEmail() == null || user.getPassword() == null || user.getRole() == null) {
+            throw new IllegalArgumentException("All fields are required");
+        }
+
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists");
         }
+
         return userRepository.save(user);
     }
 
