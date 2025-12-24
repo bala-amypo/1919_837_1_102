@@ -2,9 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDate;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "warranties")
@@ -31,9 +30,9 @@ public class Warranty {
     @Column(unique = true)
     private String serialNumber;
 
-    @OneToMany(mappedBy = "warranty")
-    private List<AlertSchedule> schedules;
+    @OneToMany(mappedBy = "warranty", cascade = CascadeType.ALL)
+    private List<AlertSchedule> schedules = new ArrayList<>();
 
-    @OneToMany(mappedBy = "warranty")
-    private List<AlertLog> logs;
+    @OneToMany(mappedBy = "warranty", cascade = CascadeType.ALL)
+    private List<AlertLog> logs = new ArrayList<>();
 }

@@ -2,7 +2,6 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,7 +22,6 @@ public class AlertLog {
 
     private LocalDateTime sentAt;
 
-    @Column(nullable = false)
     private String message;
 
     @PrePersist
