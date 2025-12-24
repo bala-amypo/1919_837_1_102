@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,17 +18,19 @@ public class AlertLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 
     private LocalDateTime sentAt;
 
+    @Column(nullable = false)
     private String message;
 
     @PrePersist
     public void prePersist() {
-        if (sentAt == null) {
-            sentAt = LocalDateTime.now();
+        if (this.sentAt == null) {
+            this.sentAt = LocalDateTime.now();
         }
     }
 }
