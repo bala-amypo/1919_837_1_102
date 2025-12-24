@@ -8,7 +8,9 @@ import com.example.demo.service.WarrantyService;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class WarrantyServiceImpl implements WarrantyService {
+
 
     private final WarrantyRepository warrantyRepository;
     private final UserRepository userRepository;
