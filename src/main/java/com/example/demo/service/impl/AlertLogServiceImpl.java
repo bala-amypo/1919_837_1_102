@@ -8,7 +8,7 @@ import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.AlertLogService;
 
 import java.util.List;
-
+@Service
 public class AlertLogServiceImpl implements AlertLogService {
 
     private final AlertLogRepository logRepository;
