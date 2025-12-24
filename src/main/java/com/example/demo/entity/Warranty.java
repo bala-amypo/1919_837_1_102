@@ -2,8 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDate;
-import java.util.*;
 
 @Entity
 @Table(name = "warranties")
@@ -18,21 +18,17 @@ public class Warranty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private User user;
-
-    @ManyToOne
-    private Product product;
-
-    private LocalDate purchaseDate;
-    private LocalDate expiryDate;
-
-    @Column(unique = true)
     private String serialNumber;
 
-    @OneToMany(mappedBy = "warranty", cascade = CascadeType.ALL)
-    private List<AlertSchedule> schedules = new ArrayList<>();
+    private LocalDate purchaseDate;
 
-    @OneToMany(mappedBy = "warranty", cascade = CascadeType.ALL)
-    private List<AlertLog> logs = new ArrayList<>();
+    private LocalDate expiryDate;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }
