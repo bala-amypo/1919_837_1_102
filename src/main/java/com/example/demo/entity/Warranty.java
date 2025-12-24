@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "warranties")
@@ -13,21 +14,26 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class Warranty {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id")
+    @ManyToOne
     private User user;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
+    @ManyToOne
     private Product product;
 
-    @Column(nullable = false)
-    private LocalDate startDate;
+    private LocalDate purchaseDate;
+    private LocalDate expiryDate;
 
-    @Column(nullable = false)
-    private LocalDate endDate;
+    @Column(unique = true)
+    private String serialNumber;
+
+    @OneToMany(mappedBy = "warranty")
+    private List<AlertSchedule> schedules;
+
+    @OneToMany(mappedBy = "warranty")
+    private List<AlertLog> logs;
 }
