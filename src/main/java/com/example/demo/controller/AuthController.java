@@ -28,12 +28,11 @@ public class AuthController {
     @PostMapping("/register")
     public User register(@RequestBody RegisterRequest request) {
 
-        User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .role(request.getRole())
-                .build();
+        User user = new User();
+user.setName(request.getName());
+user.setEmail(request.getEmail());
+user.setPassword(request.getPassword());
+user.setRole(request.getRole());
 
         return userService.register(user);
     }
