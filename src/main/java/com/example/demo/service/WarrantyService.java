@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Warranty;
-
 import java.util.List;
 
 public interface WarrantyService {

@@ -1,34 +1,45 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.*;
+import com.example.demo.entity.AlertLog;
+import com.example.demo.entity.Warranty;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.*;
+import com.example.demo.repository.AlertLogRepository;
+import com.example.demo.repository.WarrantyRepository;
+import com.example.demo.service.AlertLogService;
 
 import java.util.List;
 
-public class AlertLogServiceImpl {
+public class AlertLogServiceImpl implements AlertLogService {
 
-    private final AlertLogRepository logRepo;
-    private final WarrantyRepository warrantyRepo;
+    private final AlertLogRepository logRepository;
+    private final WarrantyRepository warrantyRepository;
 
-    public AlertLogServiceImpl(AlertLogRepository l, WarrantyRepository w) {
-        this.logRepo = l;
-        this.warrantyRepo = w;
+    public AlertLogServiceImpl(AlertLogRepository logRepository,
+                               WarrantyRepository warrantyRepository) {
+        this.logRepository = logRepository;
+        this.warrantyRepository = warrantyRepository;
     }
 
-    public AlertLog addLog(Long warrantyId, String msg) {
-        Warranty w = warrantyRepo.findById(warrantyId)
+    @Override
+    public AlertLog addLog(Long warrantyId, String message) {
+
+        Warranty warranty = warrantyRepository.findById(warrantyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
+
         AlertLog log = AlertLog.builder()
-                .warranty(w)
-                .message(msg)
+                .warranty(warranty)
+                .message(message)
                 .build();
-        return logRepo.save(log);
+
+        return logRepository.save(log);
     }
 
+    @Override
     public List<AlertLog> getLogs(Long warrantyId) {
-        warrantyRepo.findById(warrantyId)
-                .orElseThrow(() -> new RuntimeException("Warranty not found"));
-        return logRepo.findByWarrantyId(warrantyId);
+
+        warrantyRepository.findById(warrantyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Warranty not found"));
+
+        return logRepository.findByWarrantyId(warrantyId);
     }
 }
