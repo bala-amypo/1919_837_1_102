@@ -20,7 +20,7 @@ public class AlertSchedule {
 
     private Boolean enabled;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 }

@@ -24,11 +24,11 @@ public class Warranty {
 
     private LocalDate expiryDate;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 }

@@ -28,14 +28,28 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Warranty> warranties = new ArrayList<>();
 
-    // ✅ EXACT constructor expected by test cases (ORDER MATTERS)
+    // for tests using int
+    public Product(long id,
+                   String name,
+                   String brand,
+                   String modelNumber,
+                   String category,
+                   String serialNumber) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.modelNumber = modelNumber;
+        this.category = category;
+        this.serialNumber = serialNumber;
+    }
+
+    // for tests using Long
     public Product(Long id,
                    String name,
                    String brand,
                    String modelNumber,
                    String category,
                    String serialNumber) {
-
         this.id = id;
         this.name = name;
         this.brand = brand;
