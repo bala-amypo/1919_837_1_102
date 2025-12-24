@@ -1,36 +1,32 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.User;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserService;
-import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserServiceImpl(UserRepository repo) {
+        this.userRepository = repo;
     }
 
-    @Override
-    public User registerUser(User user) {
-        if (user.getName() == null || user.getEmail() == null || user.getPassword() == null || user.getRole() == null) {
-            throw new IllegalArgumentException("All fields are required");
+    public User register(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("email already exists");
         }
-
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new RuntimeException("Email already exists");
+        if (user.getRole() == null) {
+            user.setRole("USER");
         }
-
+        user.setPassword(encoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    @Override
-    public User loginUser(String email, String password) {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email)
-                .filter(u -> u.getPassword().equals(password))
-                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 }
