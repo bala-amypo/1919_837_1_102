@@ -1,4 +1,7 @@
 package com.example.demo.controller;
+
+import com.example.demo.request.LoginRequest;
+import com.example.demo.request.RegisterRequest;
 import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
