@@ -23,6 +23,14 @@ public class Warranty {
     private LocalDate expiryDate;
     private String serialNumber;
 
+    public String getSerialNumber() {
+    return serialNumber;
+}
+    public LocalDate getExpiryDate() {
+    return expiryDate;
+}
+
+
     public Warranty() {}
 
     public Warranty(Long id, User user, Product product,
