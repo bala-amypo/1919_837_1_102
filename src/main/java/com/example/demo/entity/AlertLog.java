@@ -1,40 +1,37 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "alert_logs")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class AlertLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "warranty_id")
-    private Warranty warranty;
+    private String message;
 
     private LocalDateTime sentAt;
 
-    private String message;
+    @ManyToOne
+    private Warranty warranty;
+
+    public AlertLog() {}
+
+    public Long getId() { return id; }
+
+    public String getMessage() { return message; }
+    public void setMessage(String message) { this.message = message; }
+
+    public LocalDateTime getSentAt() { return sentAt; }
+
+    public Warranty getWarranty() { return warranty; }
+    public void setWarranty(Warranty warranty) { this.warranty = warranty; }
 
     @PrePersist
     public void prePersist() {
-        if (sentAt == null) {
-            sentAt = LocalDateTime.now();
-        }
-    }
-
-    // ✅ REQUIRED BY TEST
-    public AlertLog persist() {
-        return this;
+        this.sentAt = LocalDateTime.now();
     }
 }
