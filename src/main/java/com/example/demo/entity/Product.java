@@ -2,7 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -18,11 +19,14 @@ public class Product {
     private Long id;
 
     private String name;
+
     private String brand;
+
+    @Column(nullable = false)
     private String modelNumber;
+
     private String category;
-    private String serialNumber;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Warranty> warranties = new ArrayList<>();
+    private List<Warranty> warranties;
 }
