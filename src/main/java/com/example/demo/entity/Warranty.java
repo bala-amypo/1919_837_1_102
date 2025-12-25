@@ -1,16 +1,10 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "warranties")
-@Getter
-@Setter
-@NoArgsConstructor
-@Builder
 public class Warranty {
 
     @Id
@@ -18,24 +12,21 @@ public class Warranty {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
 
     private LocalDate purchaseDate;
-
     private LocalDate expiryDate;
-
-    @Column(unique = true)
     private String serialNumber;
 
-    // ✅ REQUIRED constructor for tests
+    public Warranty() {}
+
     public Warranty(Long id, User user, Product product,
-                    LocalDate purchaseDate, LocalDate expiryDate,
-                    String serialNumber) {
+                    LocalDate purchaseDate, LocalDate expiryDate, String serialNumber) {
         this.id = id;
         this.user = user;
         this.product = product;
@@ -43,4 +34,6 @@ public class Warranty {
         this.expiryDate = expiryDate;
         this.serialNumber = serialNumber;
     }
+
+    // getters/setters
 }
