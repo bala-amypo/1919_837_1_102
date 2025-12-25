@@ -20,7 +20,6 @@ public class AlertLog {
     @ManyToOne
     private Warranty warranty;
 
-    private LocalDateTime sentAt;
-
     private String message;
+    private LocalDateTime sentAt;
 }

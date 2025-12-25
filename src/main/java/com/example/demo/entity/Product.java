@@ -19,11 +19,8 @@ public class Product {
 
     private String name;
     private String brand;
-
-    // REQUIRED BY TESTS
     private String modelNumber;
-
-    private String category;
+    private String description;
 
     @OneToMany(mappedBy = "product")
     private List<Warranty> warranties;
