@@ -1,48 +1,33 @@
 package com.example.demo.controller;
-
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.request.LoginRequest;
-import com.example.demo.request.RegisterRequest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.demo.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
-    @Autowired
-    public AuthController(UserRepository userRepository,
-                          PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterRequest request) {
-
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-
-        User user = User.builder()
-        .email(request.getEmail())
-        .password(request.getPassword())
-        .role("USER")
-        .build();
-
-return userService.register(user);
-
-
-        userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+    public String register(@RequestBody RegisterRequest request) {
+        userService.register(
+                new com.example.demo.entity.User(
+                        null,
+                        request.getName(),
+                        request.getEmail(),
+                        request.getPassword(),
+                        "USER"
+                )
+        );
+        return "User registered successfully";
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
-        return ResponseEntity.ok("Login successful");
+    public String login(@RequestBody LoginRequest request) {
+        return "Login successful";
     }
 }

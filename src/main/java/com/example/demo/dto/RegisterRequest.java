@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,5 +10,4 @@ public class RegisterRequest {
     private String name;
     private String email;
     private String password;
-    private String role;
 }
