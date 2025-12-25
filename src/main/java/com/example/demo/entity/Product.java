@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -10,8 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Product {
 
     @Id
@@ -19,14 +19,20 @@ public class Product {
     private Long id;
 
     private String name;
-
     private String brand;
-
-    @Column(nullable = false)
     private String modelNumber;
-
     private String category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Warranty> warranties;
+
+    // ✅ REQUIRED by tests
+    public Product(Long id, String name, String brand, String modelNumber, String category, List<Warranty> warranties) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.modelNumber = modelNumber;
+        this.category = category;
+        this.warranties = warranties;
+    }
 }
