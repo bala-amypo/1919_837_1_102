@@ -1,41 +1,47 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "alert_schedules")
-@Getter
-@Setter
-@NoArgsConstructor
-@Builder
 public class AlertSchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long daysBeforeExpiry;
-
-    private Boolean enabled;
+    // 🔥 FIX: Integer instead of int
+    private Integer daysBeforeExpiry;
 
     @ManyToOne
-    @JoinColumn(name = "warranty_id", nullable = false)
+    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 
-    // ✅ Required constructor for tests
-    public AlertSchedule(Long id, Long daysBeforeExpiry, Boolean enabled, Warranty warranty) {
+    public AlertSchedule() {}
+
+    public AlertSchedule(Long id, Integer daysBeforeExpiry, Warranty warranty) {
         this.id = id;
         this.daysBeforeExpiry = daysBeforeExpiry;
-        this.enabled = enabled;
         this.warranty = warranty;
     }
 
-    public int getDaysBeforeExpiry() {
-    return daysBeforeExpiry;
-}
+    public Long getId() {
+        return id;
+    }
 
-public void setWarranty(Warranty warranty) {
-    this.warranty = warranty;
-}
+    public Integer getDaysBeforeExpiry() {
+        return daysBeforeExpiry;
+    }
+
+    public void setDaysBeforeExpiry(Integer daysBeforeExpiry) {
+        this.daysBeforeExpiry = daysBeforeExpiry;
+    }
+
+    public Warranty getWarranty() {
+        return warranty;
+    }
+
+    public void setWarranty(Warranty warranty) {
+        this.warranty = warranty;
+    }
 }
