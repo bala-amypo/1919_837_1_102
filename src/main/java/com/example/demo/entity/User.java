@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,7 +17,10 @@ public class User {
     private Long id;
 
     private String name;
+
     private String email;
+
     private String password;
+
     private String role;
 }
