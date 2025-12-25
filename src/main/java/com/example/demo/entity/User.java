@@ -1,9 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder   // <-- Needed for User.builder()
 public class User {
 
     @Id
@@ -30,7 +29,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Warranty> warranties;
 
-    // ✅ REQUIRED by tests
+    // ✅ REQUIRED by test cases
     public User(Long id, String name, String email, String password, String role, List<Warranty> warranties) {
         this.id = id;
         this.name = name;
