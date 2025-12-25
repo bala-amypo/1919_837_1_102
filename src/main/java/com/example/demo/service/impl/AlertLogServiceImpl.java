@@ -1,19 +1,38 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.AlertLog;
+import com.example.demo.entity.Warranty;
 import com.example.demo.repository.AlertLogRepository;
+import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.AlertLogService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class AlertLogServiceImpl implements AlertLogService {
 
     private final AlertLogRepository alertLogRepository;
+    private final WarrantyRepository warrantyRepository;
 
-    public AlertLogServiceImpl(AlertLogRepository alertLogRepository) {
+    public AlertLogServiceImpl(AlertLogRepository alertLogRepository,
+                               WarrantyRepository warrantyRepository) {
         this.alertLogRepository = alertLogRepository;
+        this.warrantyRepository = warrantyRepository;
+    }
+
+    @Override
+    public AlertLog addLog(Long warrantyId, String message) {
+        Warranty warranty = warrantyRepository.findById(warrantyId)
+                .orElseThrow(() -> new RuntimeException("Warranty not found"));
+
+        AlertLog log = new AlertLog();
+        log.setWarranty(warranty);
+        log.setMessage(message);
+        log.setSentAt(LocalDateTime.now());
+
+        return alertLogRepository.save(log);
     }
 
     @Override
