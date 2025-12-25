@@ -21,6 +21,5 @@ public class AlertLog {
     private Warranty warranty;
 
     private String message;
-
     private LocalDateTime sentAt;
 }
