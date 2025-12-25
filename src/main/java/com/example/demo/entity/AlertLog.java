@@ -18,15 +18,18 @@ public class AlertLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String message;
+    @ManyToOne
+    @JoinColumn(name = "warranty_id")
+    private Warranty warranty;
 
     private LocalDateTime sentAt;
 
-    @ManyToOne
-    private Warranty warranty;
+    private String message;
 
     @PrePersist
     public void prePersist() {
-        this.sentAt = LocalDateTime.now();
+        if (this.sentAt == null) {
+            this.sentAt = LocalDateTime.now();
+        }
     }
 }
