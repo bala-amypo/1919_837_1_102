@@ -30,7 +30,7 @@ public class AlertLogServiceImpl implements AlertLogService {
         AlertLog log = AlertLog.builder()
                 .warranty(warranty)
                 .message(message)
-                .sentAt(LocalDateTime.now())
+                .sentAt(java.time.LocalDateTime.now())
                 .build();
 
         return alertLogRepository.save(log);
