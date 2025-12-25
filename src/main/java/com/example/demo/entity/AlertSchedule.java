@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "alert_schedules")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +18,5 @@ public class AlertSchedule {
     private int daysBeforeExpiry;
 
     @ManyToOne
-    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 }
