@@ -3,8 +3,6 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -21,7 +19,4 @@ public class User {
     private String email;
     private String password;
     private String role;
-
-    @OneToMany(mappedBy = "user")
-    private List<Warranty> warranties;
 }

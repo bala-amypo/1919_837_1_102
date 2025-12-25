@@ -18,9 +18,7 @@ public class Warranty {
     private Long id;
 
     private String serialNumber;
-
     private LocalDate purchaseDate;
-
     private LocalDate expiryDate;
 
     @ManyToOne
