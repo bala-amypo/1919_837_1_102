@@ -18,8 +18,6 @@ public interface WarrantyRepository extends JpaRepository<Warranty, Long> {
         SELECT w FROM Warranty w
         WHERE w.expiryDate BETWEEN :start AND :end
     """)
-    List<Warranty> findWarrantiesExpiringBetween(
-            @Param("start") LocalDate start,
-            @Param("end") LocalDate end
-    );
+    List<Warranty> findByExpiryDateBetween(LocalDate start, LocalDate end);
+
 }
