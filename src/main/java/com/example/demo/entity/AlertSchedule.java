@@ -8,7 +8,6 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 public class AlertSchedule {
 
@@ -16,11 +15,19 @@ public class AlertSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "warranty_id")
-    private Warranty warranty;
-
-    private Integer daysBeforeExpiry;
+    private Long daysBeforeExpiry;
 
     private Boolean enabled;
+
+    @ManyToOne
+    @JoinColumn(name = "warranty_id", nullable = false)
+    private Warranty warranty;
+
+    // ✅ Required constructor for tests
+    public AlertSchedule(Long id, Long daysBeforeExpiry, Boolean enabled, Warranty warranty) {
+        this.id = id;
+        this.daysBeforeExpiry = daysBeforeExpiry;
+        this.enabled = enabled;
+        this.warranty = warranty;
+    }
 }
