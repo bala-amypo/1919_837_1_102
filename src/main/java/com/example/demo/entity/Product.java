@@ -28,14 +28,14 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Warranty> warranties = new ArrayList<>();
 
-    // for tests using int
-    public Product(long id,
+    // ✅ REQUIRED: int version (TEST USES THIS)
+    public Product(int id,
                    String name,
                    String brand,
                    String modelNumber,
                    String category,
                    String serialNumber) {
-        this.id = id;
+        this.id = (long) id;
         this.name = name;
         this.brand = brand;
         this.modelNumber = modelNumber;
@@ -43,7 +43,7 @@ public class Product {
         this.serialNumber = serialNumber;
     }
 
-    // for tests using Long
+    // ✅ REQUIRED: Long version
     public Product(Long id,
                    String name,
                    String brand,
