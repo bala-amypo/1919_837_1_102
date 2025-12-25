@@ -6,7 +6,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "alert_logs")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,15 +18,9 @@ public class AlertLog {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 
     private LocalDateTime sentAt;
 
     private String message;
-
-    @PrePersist
-    public void prePersist() {
-        if (sentAt == null) sentAt = LocalDateTime.now();
-    }
 }
