@@ -1,16 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.Product;
-import com.example.demo.entity.User;
-import com.example.demo.entity.Warranty;
+import com.example.demo.entity.*;
 import com.example.demo.exception.ResourceNotFoundException;
-import com.example.demo.repository.ProductRepository;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.repository.WarrantyRepository;
+import com.example.demo.repository.*;
 import com.example.demo.service.WarrantyService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -37,12 +32,8 @@ public class WarrantyServiceImpl implements WarrantyService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
-        if (warranty.getExpiryDate().isBefore(warranty.getPurchaseDate())) {
-            throw new IllegalArgumentException("Expiry must be after purchase date");
-        }
-
         if (warrantyRepository.existsBySerialNumber(warranty.getSerialNumber())) {
-            throw new IllegalArgumentException("Serial number must be unique");
+            throw new IllegalArgumentException("Serial number already exists");
         }
 
         warranty.setUser(user);
@@ -60,10 +51,5 @@ public class WarrantyServiceImpl implements WarrantyService {
     @Override
     public List<Warranty> getUserWarranties(Long userId) {
         return warrantyRepository.findByUserId(userId);
-    }
-
-    @Override
-    public List<Warranty> getExpiringWarranties(LocalDate start, LocalDate end) {
-        return warrantyRepository.findByExpiryDateBetween(start, end);
     }
 }

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class AlertLog {
 
@@ -18,26 +19,15 @@ public class AlertLog {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "warranty_id", nullable = false)
+    @JoinColumn(name = "warranty_id")
     private Warranty warranty;
 
     private LocalDateTime sentAt;
 
-    @Column(nullable = false)
     private String message;
-
-    // ✅ Required constructor for tests
-    public AlertLog(Long id, Warranty warranty, LocalDateTime sentAt, String message) {
-        this.id = id;
-        this.warranty = warranty;
-        this.sentAt = sentAt;
-        this.message = message;
-    }
 
     @PrePersist
     public void prePersist() {
-        if (this.sentAt == null) {
-            this.sentAt = LocalDateTime.now();
-        }
+        if (sentAt == null) sentAt = LocalDateTime.now();
     }
 }
