@@ -28,14 +28,14 @@ public class AuthController {
 
         String encodedPassword = passwordEncoder.encode(request.getPassword());
 
-        User user = new User(
-                null,
-                request.getName(),
-                request.getEmail(),
-                encodedPassword,
-                "USER",
-                null
-        );
+        User user = User.builder()
+        .email(request.getEmail())
+        .password(request.getPassword())
+        .role("USER")
+        .build();
+
+return userService.register(user);
+
 
         userRepository.save(user);
         return ResponseEntity.ok("User registered successfully");
