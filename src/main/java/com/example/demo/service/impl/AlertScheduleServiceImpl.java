@@ -32,6 +32,6 @@ public class AlertScheduleServiceImpl implements AlertScheduleService {
 
     @Override
     public List<AlertSchedule> getSchedules(Long warrantyId) {
-        return aleartScheduleRepository.findByWarrantyId(warrantyId);
+        return alertScheduleRepository.findByWarrantyId(warrantyId);
     }
 }
