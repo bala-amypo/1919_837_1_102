@@ -4,22 +4,22 @@ import com.example.demo.entity.User;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 @Service
 public class UserServiceImpl implements UserService {
 
-
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.passwordEncoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
     }
 
     @Override
     public User register(User user) {
-
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("email already exists");
         }
@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
             user.setRole("USER");
         }
 
-        user.setPassword(encoder.encode(user.getPassword()));
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
