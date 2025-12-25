@@ -11,8 +11,7 @@ public class AlertScheduleServiceImpl implements AlertScheduleService {
 
     @Override
     public AlertSchedule createSchedule(Long warrantyId, AlertSchedule schedule) {
-        Warranty warranty = warrantyRepo.findById(warrantyId).orElseThrow();
-        schedule.setWarranty(warranty);
+        schedule.setWarranty(warrantyRepo.findById(warrantyId).orElseThrow());
         return repo.save(schedule);
     }
 
