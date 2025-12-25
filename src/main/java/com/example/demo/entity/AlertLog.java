@@ -17,9 +17,10 @@ public class AlertLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String message;
+
+    private LocalDateTime sentAt;
+
     @ManyToOne
     private Warranty warranty;
-
-    private String message;
-    private LocalDateTime sentAt;
 }

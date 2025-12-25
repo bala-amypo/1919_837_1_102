@@ -20,7 +20,7 @@ public class Product {
     private String name;
     private String brand;
     private String modelNumber;
-    private String description;
+    private String category;
 
     @OneToMany(mappedBy = "product")
     private List<Warranty> warranties;
