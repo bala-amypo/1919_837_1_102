@@ -1,16 +1,10 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@NoArgsConstructor
-@Builder   // <-- Needed for User.builder()
 public class User {
 
     @Id
@@ -18,18 +12,18 @@ public class User {
     private Long id;
 
     private String name;
-
-    @Column(unique = true, nullable = false)
     private String email;
-
     private String password;
-
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Warranty> warranties;
 
-    // ✅ REQUIRED by test cases
+    // REQUIRED BY JPA
+    public User() {
+    }
+
+    // REQUIRED BY TEST CASES
     public User(Long id, String name, String email, String password, String role, List<Warranty> warranties) {
         this.id = id;
         this.name = name;
@@ -38,4 +32,12 @@ public class User {
         this.role = role;
         this.warranties = warranties;
     }
-}
+
+    // Getters & setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { retu
