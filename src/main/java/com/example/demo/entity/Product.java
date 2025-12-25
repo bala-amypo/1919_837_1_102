@@ -19,7 +19,10 @@ public class Product {
 
     private String name;
     private String brand;
-    private String model;
+
+    // REQUIRED BY TESTS
+    private String modelNumber;
+
     private String category;
 
     @OneToMany(mappedBy = "product")

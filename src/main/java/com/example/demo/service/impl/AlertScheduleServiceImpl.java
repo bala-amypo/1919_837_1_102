@@ -5,6 +5,8 @@ import com.example.demo.repository.AlertScheduleRepository;
 import com.example.demo.service.AlertScheduleService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlertScheduleServiceImpl implements AlertScheduleService {
 
@@ -15,7 +17,7 @@ public class AlertScheduleServiceImpl implements AlertScheduleService {
     }
 
     @Override
-    public AlertSchedule save(AlertSchedule schedule) {
-        return repository.save(schedule);
+    public List<AlertSchedule> getSchedules(Long warrantyId) {
+        return repository.findByWarrantyId(warrantyId);
     }
 }

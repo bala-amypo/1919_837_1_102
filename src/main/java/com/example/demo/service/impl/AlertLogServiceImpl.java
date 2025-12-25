@@ -5,6 +5,8 @@ import com.example.demo.repository.AlertLogRepository;
 import com.example.demo.service.AlertLogService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AlertLogServiceImpl implements AlertLogService {
 
@@ -15,7 +17,7 @@ public class AlertLogServiceImpl implements AlertLogService {
     }
 
     @Override
-    public AlertLog save(AlertLog log) {
-        return repository.save(log);
+    public List<AlertLog> getLogs(Long warrantyId) {
+        return repository.findByWarrantyId(warrantyId);
     }
 }
