@@ -29,9 +29,4 @@ public class AlertScheduleServiceImpl implements AlertScheduleService {
         schedule.setWarranty(warranty);
         return alertScheduleRepository.save(schedule);
     }
-
-    @Override
-    public List<AlertSchedule> getSchedules(Long warrantyId) {
-        return alertScheduleRepository.findByWarrantyId(warrantyId);
-    }
 }
