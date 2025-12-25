@@ -8,14 +8,13 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AlertSchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int daysBeforeExpiry;
+    private Integer daysBeforeExpiry;
 
     @ManyToOne
     private Warranty warranty;

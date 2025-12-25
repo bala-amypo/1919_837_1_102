@@ -8,7 +8,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Product {
 
     @Id
@@ -16,6 +15,5 @@ public class Product {
     private Long id;
 
     private String name;
-    private String brand;
     private String modelNumber;
 }
