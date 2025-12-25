@@ -32,12 +32,15 @@ public class AuthController {
     @Operation(summary = "Register a new user")
     public User register(@RequestBody RegisterRequest request) {
 
-        User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .role(request.getRole())
-                .build();
+        User user = new User(
+    null,
+    request.getName(),
+    request.getEmail(),
+    encodedPassword,
+    "USER",
+    null
+);
+
 
         return userService.register(user);
     }
