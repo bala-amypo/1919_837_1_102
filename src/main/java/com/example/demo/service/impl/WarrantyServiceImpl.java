@@ -37,9 +37,8 @@ public class WarrantyServiceImpl implements WarrantyService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
-        if (warranty.getExpiryDate().isBefore(warranty.getPurchaseDate()) ||
-            warranty.getExpiryDate().isEqual(warranty.getPurchaseDate())) {
-            throw new IllegalArgumentException("Expiry date must be after purchase date");
+        if (warranty.getExpiryDate().isBefore(warranty.getPurchaseDate())) {
+            throw new IllegalArgumentException("Expiry must be after purchase date");
         }
 
         if (warrantyRepository.existsBySerialNumber(warranty.getSerialNumber())) {
@@ -61,5 +60,10 @@ public class WarrantyServiceImpl implements WarrantyService {
     @Override
     public List<Warranty> getUserWarranties(Long userId) {
         return warrantyRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Warranty> getExpiringWarranties(LocalDate start, LocalDate end) {
+        return warrantyRepository.findByExpiryDateBetween(start, end);
     }
 }

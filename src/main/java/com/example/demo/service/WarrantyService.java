@@ -1,19 +1,16 @@
-package com.example.demo.repository;
+package com.example.demo.service;
 
 import com.example.demo.entity.Warranty;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.time.LocalDate;
 import java.util.List;
 
-public interface WarrantyRepository extends JpaRepository<Warranty, Long> {
+public interface WarrantyService {
 
-    // Used in WarrantyServiceImpl.getUserWarranties()
-    List<Warranty> findByUserId(Long userId);
+    Warranty registerWarranty(Long userId, Long productId, Warranty warranty);
 
-    // Used in alert scheduler / alert service
-    List<Warranty> findByExpiryDateBetween(LocalDate start, LocalDate end);
+    Warranty getWarranty(Long warrantyId);
 
-    // Used during warranty registration
-    boolean existsBySerialNumber(String serialNumber);
+    List<Warranty> getUserWarranties(Long userId);
+
+    List<Warranty> getExpiringWarranties(LocalDate startDate, LocalDate endDate);
 }
