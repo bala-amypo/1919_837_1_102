@@ -30,4 +30,12 @@ public class AlertSchedule {
         this.enabled = enabled;
         this.warranty = warranty;
     }
+
+    public int getDaysBeforeExpiry() {
+    return daysBeforeExpiry;
+}
+
+public void setWarranty(Warranty warranty) {
+    this.warranty = warranty;
+}
 }
