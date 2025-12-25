@@ -1,10 +1,17 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "alert_logs")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class AlertLog {
 
     @Id
@@ -17,18 +24,6 @@ public class AlertLog {
 
     @ManyToOne
     private Warranty warranty;
-
-    public AlertLog() {}
-
-    public Long getId() { return id; }
-
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
-
-    public LocalDateTime getSentAt() { return sentAt; }
-
-    public Warranty getWarranty() { return warranty; }
-    public void setWarranty(Warranty warranty) { this.warranty = warranty; }
 
     @PrePersist
     public void prePersist() {
