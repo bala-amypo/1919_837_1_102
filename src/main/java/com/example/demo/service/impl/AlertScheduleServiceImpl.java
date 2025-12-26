@@ -8,7 +8,9 @@ import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.AlertScheduleService;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlertScheduleServiceImpl implements AlertScheduleService {
 
     private final AlertScheduleRepository scheduleRepository;

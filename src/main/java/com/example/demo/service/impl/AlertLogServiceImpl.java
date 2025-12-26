@@ -8,7 +8,9 @@ import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.AlertLogService;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlertLogServiceImpl implements AlertLogService {
 
     private final AlertLogRepository logRepository;
