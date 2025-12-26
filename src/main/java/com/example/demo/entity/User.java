@@ -1,3 +1,10 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -22,7 +29,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Warranty> warranties;
 
-    // 🔧 REQUIRED FOR TESTS
+    // REQUIRED BY TEST CASES
     public User(Long id, String name, String email, String password, String role) {
         this.id = id;
         this.name = name;

@@ -1,3 +1,10 @@
+package com.example.demo.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 @Data
@@ -18,7 +25,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Warranty> warranties;
 
-    // 🔧 REQUIRED FOR TESTS
+    // REQUIRED BY TEST CASES
     public Product(Long id, String name, String brand, String modelNumber, String category) {
         this.id = id;
         this.name = name;
