@@ -3,12 +3,14 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Getter
-@Setter
+@Table(name = "users")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Builder
 public class User {
 
     @Id
@@ -17,9 +19,13 @@ public class User {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
 
     private String role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Warranty> warranties;
 }

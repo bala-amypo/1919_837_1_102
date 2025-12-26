@@ -3,11 +3,14 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Getter
-@Setter
+@Table(name = "products")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Product {
 
     @Id
@@ -15,5 +18,10 @@ public class Product {
     private Long id;
 
     private String name;
+    private String brand;
     private String modelNumber;
+    private String category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Warranty> warranties;
 }

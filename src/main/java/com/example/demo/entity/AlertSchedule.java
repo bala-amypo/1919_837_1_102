@@ -4,18 +4,20 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "alert_schedules")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class AlertSchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer daysBeforeExpiry;
-
     @ManyToOne
     private Warranty warranty;
+
+    private Integer daysBeforeExpiry;
+    private Boolean enabled;
 }
