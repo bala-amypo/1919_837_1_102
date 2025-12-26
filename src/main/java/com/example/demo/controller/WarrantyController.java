@@ -20,24 +20,22 @@ public class WarrantyController {
     }
 
     @PostMapping("/register/{userId}/{productId}")
-    @Operation(summary = "Register warranty for user and product")
-    public Warranty registerWarranty(
-            @PathVariable Long userId,
-            @PathVariable Long productId,
-            @RequestBody Warranty warranty) {
-
-        return warrantyService.registerWarranty(userId, productId, warranty);
+    @Operation(summary = "Register warranty")
+    public Warranty register(@PathVariable Long userId,
+                             @PathVariable Long productId,
+                             @RequestBody Warranty w) {
+        return warrantyService.registerWarranty(userId, productId, w);
     }
 
-    @GetMapping("/{warrantyId}")
-    @Operation(summary = "Get warranty by ID")
-    public Warranty getWarranty(@PathVariable Long warrantyId) {
-        return warrantyService.getWarranty(warrantyId);
+    @GetMapping("/{id}")
+    @Operation(summary = "Get warranty")
+    public Warranty get(@PathVariable Long id) {
+        return warrantyService.getWarranty(id);
     }
 
     @GetMapping("/user/{userId}")
-    @Operation(summary = "Get all warranties of a user")
-    public List<Warranty> getUserWarranties(@PathVariable Long userId) {
+    @Operation(summary = "Get user warranties")
+    public List<Warranty> byUser(@PathVariable Long userId) {
         return warrantyService.getUserWarranties(userId);
     }
 }

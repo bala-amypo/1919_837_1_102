@@ -13,24 +13,22 @@ import java.util.List;
 @Tag(name = "Alert Logs")
 public class AlertLogController {
 
-    private final AlertLogService alertLogService;
+    private final AlertLogService service;
 
-    public AlertLogController(AlertLogService alertLogService) {
-        this.alertLogService = alertLogService;
+    public AlertLogController(AlertLogService service) {
+        this.service = service;
     }
 
     @PostMapping("/{warrantyId}")
-    @Operation(summary = "Create alert log")
-    public AlertLog addLog(
-            @PathVariable Long warrantyId,
-            @RequestParam String message) {
-
-        return alertLogService.addLog(warrantyId, message);
+    @Operation(summary = "Add alert log")
+    public AlertLog add(@PathVariable Long warrantyId,
+                        @RequestParam String message) {
+        return service.addLog(warrantyId, message);
     }
 
     @GetMapping("/{warrantyId}")
-    @Operation(summary = "Get alert logs")
-    public List<AlertLog> getLogs(@PathVariable Long warrantyId) {
-        return alertLogService.getLogs(warrantyId);
+    @Operation(summary = "List alert logs")
+    public List<AlertLog> list(@PathVariable Long warrantyId) {
+        return service.getLogs(warrantyId);
     }
 }
