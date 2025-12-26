@@ -8,11 +8,9 @@ import com.example.demo.repository.ProductRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.WarrantyRepository;
 import com.example.demo.service.WarrantyService;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public class WarrantyServiceImpl implements WarrantyService {
 
     private final WarrantyRepository warrantyRepository;
@@ -36,8 +34,12 @@ public class WarrantyServiceImpl implements WarrantyService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new ResourceNotFoundException("Product not found"));
 
+        if (!warranty.getExpiryDate().isAfter(warranty.getPurchaseDate())) {
+            throw new IllegalArgumentException("Expiry date must be after purchase date");
+        }
+
         if (warrantyRepository.existsBySerialNumber(warranty.getSerialNumber())) {
-            throw new IllegalArgumentException("Serial number already exists");
+            throw new IllegalArgumentException("Serial number must be unique");
         }
 
         warranty.setUser(user);
