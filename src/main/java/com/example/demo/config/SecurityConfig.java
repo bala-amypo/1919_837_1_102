@@ -13,10 +13,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final JwtTokenProvider tokenProvider;
+    private final JwtProperties jwtProperties;
 
-    public SecurityConfig(JwtTokenProvider tokenProvider) {
-        this.tokenProvider = tokenProvider;
+    public SecurityConfig(JwtProperties jwtProperties) {
+        this.jwtProperties = jwtProperties;
+    }
+
+    // 🔑 FIX: define JwtTokenProvider bean
+    @Bean
+    public JwtTokenProvider jwtTokenProvider() {
+        return new JwtTokenProvider(jwtProperties);
     }
 
     @Bean
@@ -27,7 +33,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
+        http
+            .csrf(csrf -> csrf.disable())
             .sessionManagement(sm ->
                     sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(ex ->
@@ -41,7 +48,7 @@ public class SecurityConfig {
                     .anyRequest().authenticated()
             )
             .addFilterBefore(
-                    new JwtAuthenticationFilter(tokenProvider),
+                    new JwtAuthenticationFilter(jwtTokenProvider()),
                     org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class
             );
 
