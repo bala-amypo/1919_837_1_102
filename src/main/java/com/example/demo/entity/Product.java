@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -23,9 +24,9 @@ public class Product {
     private String category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Warranty> warranties;
 
-    // REQUIRED BY TEST CASES
     public Product(Long id, String name, String brand, String modelNumber, String category) {
         this.id = id;
         this.name = name;
