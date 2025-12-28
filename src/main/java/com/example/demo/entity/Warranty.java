@@ -24,6 +24,7 @@ public class Warranty {
     @ManyToOne
     private Product product;
 
+    @Column(name = "start_date")
     private LocalDate purchaseDate;
 
     @Column(name = "end_date")
