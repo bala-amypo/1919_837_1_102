@@ -29,7 +29,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Warranty> warranties;
 
-    // REQUIRED BY TEST CASES
     public User(Long id, String name, String email, String password, String role) {
         this.id = id;
         this.name = name;
